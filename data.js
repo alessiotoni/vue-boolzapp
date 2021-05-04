@@ -1,7 +1,7 @@
 const globalUsersList = [
     {
         name: 'Michele',
-        avatar: '_1',
+        avatar: 'imgs/avatar_1.jpg',
         visible: true,
         messages: [
             {
@@ -23,7 +23,7 @@ const globalUsersList = [
     },
     {
         name: 'Fabio',
-        avatar: '_2',
+        avatar: 'imgs/avatar_2.jpg',
         visible: true,
         messages: [
             {
@@ -44,7 +44,7 @@ const globalUsersList = [
         ],
     }, {
         name: 'Samuele',
-        avatar: '_3',
+        avatar: 'imgs/avatar_3.jpg',
         visible: true,
         messages: [
             {
@@ -66,7 +66,58 @@ const globalUsersList = [
     },
     {
         name: 'Luisa',
-        avatar: '_4',
+        avatar: 'imgs/avatar_4.jpg',
+        visible: true,
+        messages: [
+            {
+                date: '10/01/2020 15:30:55',
+                text: 'Lo sai che ha aperto una nuova pizzeria?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                text: 'Si, ma preferirei andare al cinema',
+                status: 'received'
+            }
+        ],
+    },
+    {
+        name: 'Chiara',
+        avatar: 'imgs/avatar_5.jpg',
+        visible: true,
+        messages: [
+            {
+                date: '10/01/2020 15:30:55',
+                text: 'Lo sai che ha aperto una nuova pizzeria?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                text: 'Si, ma preferirei andare al cinema',
+                status: 'received'
+            }
+        ],
+    },
+    {
+        name: 'Mario',
+        avatar: 'imgs/avatar_6.jpg',
+        visible: true,
+        messages: [
+            {
+                date: '10/01/2020 15:30:55',
+                text: 'Lo sai che ha aperto una nuova pizzeria?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                text: 'Si, ma preferirei andare al cinema',
+                status: 'received'
+            }
+        ],
+    },
+    {
+        name: 'Lucia',
+        avatar: 'imgs/avatar_7.jpg',
         visible: true,
         messages: [
             {
