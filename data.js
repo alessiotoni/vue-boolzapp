@@ -42,7 +42,8 @@ const globalUsersList = [
                 status: 'sent'
             }
         ],
-    }, {
+    }, 
+    {
         name: 'Samuele',
         avatar: 'imgs/avatar_3.jpg',
         visible: true,

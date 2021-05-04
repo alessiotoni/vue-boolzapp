@@ -3,31 +3,62 @@
     padding: 0;
     margin: 0;
 }
-
 html {
     font-family: 'Roboto', sans-serif;
 }
-
+/* utility */
 .clearfix::after {
     display: table;
     content: '';
     clear: both;
 }
-
 .color-black {
     color: black;
 }
-
 .margin-b-5 {
     margin-bottom: 5px;
 }
-
 .container {
     height: 100vh;
     position: relative;
     background-color: rgb(218, 219, 213);
 }
-
+.container .background-up {
+    height: 100px;
+    width: 100%;
+    background-color: rgb(65, 147, 136);
+}
+/* item */
+.item {
+    background-color: rgb(237, 237, 237);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    color: rgb(128, 128, 128);
+}
+.item > * {
+    margin: 0 10px;
+}
+.item p {
+    font-size: 12px;
+}
+.item .circle {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    background-color: white;
+    margin: 0 10px;
+    position: relative;
+}
+.item .circle img {
+    width: 100%;
+    height: 100%;
+}
+.item .white-space {
+    flex-grow: 1;
+}
+/* box-app */
 .container .box-app {
     width: 90%;
     position: absolute;
@@ -37,57 +68,16 @@ html {
     transform: translateX(-50%);
     display: flex;
 }
-
-.container .background-up {
-    height: 100px;
-    width: 100%;
-    background-color: rgb(65, 147, 136);
-}
-
+/* aside */
 .box-app .aside {
     height: 100%;
     flex-basis: 350px;
-    /* display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap; */
     border-right: 1px solid rgb(189, 173, 173);
 }
-
-.item {
-    background-color: rgb(237, 237, 237);
-    height: 60px;
-    display: flex;
-    align-items: center;
-    color: rgb(128, 128, 128);
-}
-
-.item > * {
-    margin: 0 10px;
-}
-
-.circle {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    overflow: hidden;
-    background-color: white;
-    margin: 0 10px;
-    position: relative;
-}
-
-.circle img {
-    width: 100%;
-    height: 100%;
-}
-
-.item .white-space {
-    flex-grow: 1;
-}
-
+/* aside notification */
 .aside .item.notification {
     background-color: rgb(171, 223, 251);
 }
-
 .aside .item.item.notification .circle i {
     position: absolute;
     top: 50%;
@@ -95,16 +85,11 @@ html {
     transform: translate(-50%, -50%);
     color: rgb(171, 223, 251);
 }
-
-.item p {
-    font-size: 12px;
-}
-
+/* aside search */
 .item.text-box {
     background-color: rgb(237, 237, 237);
     position: relative;
 }
-
 .item.text-box .fa-search {
     color: rgb(223, 215, 215);
     position: absolute;
@@ -112,7 +97,6 @@ html {
     left: 15px;
     transform: translateY(-50%);
 }
-
 .item.text-box .text {
     height: 30px;
     width: 100%;
@@ -122,34 +106,27 @@ html {
     outline: none;
     font-size: 10px;
 } 
-
+/* aside contatti */
 .aside .container-contacts {
     height: calc(100% - 180px);
     background-color: rgb(237, 237, 237);
     overflow: auto;
 }
-
 .aside .container-contacts .item {
     background-color: white;
     list-style: none;
     border-top: 1px solid rgb(189, 173, 173);
-    /* border-bottom: 1px solid rgb(189, 173, 173); */
 }
-
 .aside .container-contacts .item:hover {
     background-color: rgb(216, 212, 212);
 }
-
 .aside .container-contacts .item p {
     text-decoration: none;
 }
-
 .aside .container-contacts .item .circle {
     width: 50px;
     height: 50px;
 }
-
-
 /* chat */
 .box-app .container-chat {
     flex-grow: 1;
@@ -157,21 +134,11 @@ html {
     display: flex;
     flex-direction: column;
 }
-
 .box-app .container-chat .chat {
     flex-grow: 1;
     background-image: url("imgs/mine.jpg");
     padding: 15px;
 }
-
-/* scrive messaggio */
-.box-app .container-chat .item.text-box .text {
-    padding-left: 10px;
-    height: 40px;
-    font-size: 15px;
-}
-
-
 /* messaggio */
 .box-app .container-chat .chat .message {
     border-radius: 4px;
@@ -179,8 +146,17 @@ html {
     max-width: 250px;
     margin-bottom: 10px;
     position: relative;
-
 }
+/* messaggio sent - received */
+.box-app .container-chat .chat .message.sent {
+    background-color: rgb(192, 245, 192);
+    float: right;
+}
+.box-app .container-chat .chat .message.received {
+    background-color: rgb(243, 245, 253);
+    float: left;
+}
+/* messaggio Arrow */
 .box-app .container-chat .chat .arrow-down {
     width: 0; 
     height: 0; 
@@ -189,31 +165,25 @@ html {
     position: absolute;
     top: 0;
 }
-
-.box-app .container-chat .chat .message.sent .arrow-down {
+.chat .message.sent .arrow-down {
     border-top: 10px solid rgb(192, 245, 192);
     right: -10px;
 }
-
-.message.received .arrow-down {
+.chat .message.received .arrow-down {
     left: -10px;   
-    border-top: 10px solid rgb(225, 230, 245);
+    border-top: 10px solid rgb(243, 245, 253);
 }
-
-
-.box-app .container-chat .chat .message.sent {
-    background-color: rgb(192, 245, 192);
-    float: right;
-}
-.box-app .container-chat .chat .message.received {
-    background-color: rgb(225, 230, 245);
-    float: left;
-}
-
-.time {
+/* messaggio time */
+.chat .message .time {
     position: absolute;
     bottom: 2px;
     right: 2px;
     font-size: 8px;
     color: gray;
+}
+/* scrive messaggio */
+.box-app .container-chat .item.text-box .text {
+    padding-left: 10px;
+    height: 40px;
+    font-size: 15px;
 }

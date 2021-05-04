@@ -46,7 +46,6 @@
                         <div>
                             <p class="margin-b-5 color-black"><strong>Ricevi notifiche di nuovi messaggi</strong></p>
                             <p>Attiva notifiche desktop</p>
-
                         </div>
                     </div>
                     <!-- cerca -->
@@ -64,7 +63,6 @@
                                 <div>
                                     <p class="margin-b-5 color-black"><strong>{{item.name}}</strong></p>
                                     <p>Non ci sono messaggi</p>
-
                                 </div>
                             </li>
                         </ul>
@@ -86,11 +84,11 @@
                         <i class="fa fa-paperclip" aria-hidden="true"></i>
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
-                    <!-- chat -->
+                    <!-- msg -->
                     <div class="chat">
                         <div v-for="(item, index) in usersList[contactActive].messages" class="clearfix">
                             <div :class="(item.status == 'sent')? 'sent' : 'received'" class="message">
-                                {{item.text}}
+                                <p>{{item.text}}</p>
                                 <div class="arrow-down"></div>
                                 <div class="time">{{getTimeFromString(item.date)}}</div>
                             </div>
