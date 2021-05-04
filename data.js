@@ -1,7 +1,7 @@
 const globalUsersList = [
     {
-        name: 'Michele',
-        avatar: 'imgs/avatar_1.jpg',
+        name: 'Luffy',
+        avatar: 'imgs/luffy.jpeg',
         visible: true,
         messages: [
             {
@@ -22,8 +22,8 @@ const globalUsersList = [
         ],
     },
     {
-        name: 'Fabio',
-        avatar: 'imgs/avatar_2.jpg',
+        name: 'Lupin',
+        avatar: 'imgs/lupin.jpeg',
         visible: true,
         messages: [
             {
@@ -44,8 +44,8 @@ const globalUsersList = [
         ],
     }, 
     {
-        name: 'Samuele',
-        avatar: 'imgs/avatar_3.jpg',
+        name: 'Eren',
+        avatar: 'imgs/eren.png',
         visible: true,
         messages: [
             {
@@ -66,8 +66,8 @@ const globalUsersList = [
         ],
     },
     {
-        name: 'Luisa',
-        avatar: 'imgs/avatar_4.jpg',
+        name: 'Edward',
+        avatar: 'imgs/edward.png',
         visible: true,
         messages: [
             {
@@ -83,8 +83,8 @@ const globalUsersList = [
         ],
     },
     {
-        name: 'Chiara',
-        avatar: 'imgs/avatar_5.jpg',
+        name: 'Ash',
+        avatar: 'imgs/ash.png',
         visible: true,
         messages: [
             {
@@ -100,8 +100,8 @@ const globalUsersList = [
         ],
     },
     {
-        name: 'Mario',
-        avatar: 'imgs/avatar_6.jpg',
+        name: 'Vegeta',
+        avatar: 'imgs/Vegeta.png',
         visible: true,
         messages: [
             {
@@ -117,8 +117,8 @@ const globalUsersList = [
         ],
     },
     {
-        name: 'Lucia',
-        avatar: 'imgs/avatar_7.jpg',
+        name: 'Naruto',
+        avatar: 'imgs/naruto.jpeg',
         visible: true,
         messages: [
             {
