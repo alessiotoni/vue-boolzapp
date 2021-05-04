@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="styles.css">
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <!-- font awesom -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- moment js -->
@@ -23,7 +25,7 @@
 <body>
     <div id="app">
         <div class="container">
-            <div class="b"></div>
+            <div class="background-up"></div>
             <div class="box-app">
                 <div class="aside">
                     <!-- item top -->
@@ -55,30 +57,46 @@
                     <!-- lista contatti -->
                     <div class="container-contacts">
                         <ul>
-                            <li v-for="item in usersList " class="item">
+                            <li v-for="(item, index) in usersList" @click="selectContact(index)" class="item">
                                 <div class="circle">
                                     <img :src="item.avatar" alt="">
                                 </div>
                                 <div>
                                     <p class="margin-b-5 color-black"><strong>{{item.name}}</strong></p>
                                     <p>Non ci sono messaggi</p>
-        
+
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- contenitore chat -->
                 <div class="container-chat">
                     <div class="item">
                         <div class="circle">
-                            <img src="imgs/avatar_io.jpg" alt="">
+                            <img :src="usersList[contactActive].avatar" alt="">
+                        </div>
+                        <div>
+                            <p class="margin-b-5 color-black"><strong>{{usersList[contactActive].name}}</strong></p>
+                            <p>Ultimo accesso oggi alle...</p>
                         </div>
                         <div class="white-space"></div>
-                        <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
-                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="fa fa-paperclip" aria-hidden="true"></i>
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
-                    <div class="chat"></div>
+                    <!-- chat -->
+                    <div class="chat">
+                        <div v-for="(item, index) in usersList[contactActive].messages" class="clearfix">
+                            <div :class="(item.status == 'sent')? 'sent' : 'received'" class="message">
+                                {{item.text}}
+                                <div class="arrow-down"></div>
+                                <div class="time">{{getTimeFromString(item.date)}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- scive msg -->
                     <div class="item text-box">
                         <i class="fa fa-smile-o" aria-hidden="true"></i>
                         <input type="text" class="text" placeholder="Cerca o inizia una nuova chat">

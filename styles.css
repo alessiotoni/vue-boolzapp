@@ -8,6 +8,12 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+.clearfix::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
 .color-black {
     color: black;
 }
@@ -32,7 +38,7 @@ html {
     display: flex;
 }
 
-.container .b {
+.container .background-up {
     height: 100px;
     width: 100%;
     background-color: rgb(65, 147, 136);
@@ -144,7 +150,7 @@ html {
 }
 
 
-
+/* chat */
 .box-app .container-chat {
     flex-grow: 1;
     height: 100%;
@@ -155,12 +161,59 @@ html {
 .box-app .container-chat .chat {
     flex-grow: 1;
     background-image: url("imgs/mine.jpg");
+    padding: 15px;
 }
 
-
-
+/* scrive messaggio */
 .box-app .container-chat .item.text-box .text {
     padding-left: 10px;
     height: 40px;
     font-size: 15px;
+}
+
+
+/* messaggio */
+.box-app .container-chat .chat .message {
+    border-radius: 4px;
+    padding: 10px;
+    max-width: 250px;
+    margin-bottom: 10px;
+    position: relative;
+
+}
+.box-app .container-chat .chat .arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: 0;
+}
+
+.box-app .container-chat .chat .message.sent .arrow-down {
+    border-top: 10px solid rgb(192, 245, 192);
+    right: -10px;
+}
+
+.message.received .arrow-down {
+    left: -10px;   
+    border-top: 10px solid rgb(225, 230, 245);
+}
+
+
+.box-app .container-chat .chat .message.sent {
+    background-color: rgb(192, 245, 192);
+    float: right;
+}
+.box-app .container-chat .chat .message.received {
+    background-color: rgb(225, 230, 245);
+    float: left;
+}
+
+.time {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 8px;
+    color: gray;
 }
