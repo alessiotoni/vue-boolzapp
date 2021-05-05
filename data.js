@@ -2,6 +2,7 @@ const globalUsersList = [
     {
         name: 'Luffy',
         avatar: 'imgs/luffy.jpeg',
+        id: 1,
         visible: true,
         messages: [
             {
@@ -24,6 +25,7 @@ const globalUsersList = [
     {
         name: 'Lupin',
         avatar: 'imgs/lupin.jpeg',
+        id: 2,
         visible: true,
         messages: [
             {
@@ -46,6 +48,7 @@ const globalUsersList = [
     {
         name: 'Eren',
         avatar: 'imgs/eren.png',
+        id: 3,
         visible: true,
         messages: [
             {
@@ -68,6 +71,7 @@ const globalUsersList = [
     {
         name: 'Edward',
         avatar: 'imgs/edward.png',
+        id: 4,
         visible: true,
         messages: [
             {
@@ -85,6 +89,7 @@ const globalUsersList = [
     {
         name: 'Ash',
         avatar: 'imgs/ash.png',
+        id: 5,
         visible: true,
         messages: [
             {
@@ -102,6 +107,7 @@ const globalUsersList = [
     {
         name: 'Vegeta',
         avatar: 'imgs/Vegeta.png',
+        id: 6,
         visible: true,
         messages: [
             {
@@ -119,6 +125,7 @@ const globalUsersList = [
     {
         name: 'Naruto',
         avatar: 'imgs/naruto.jpeg',
+        id: 7,
         visible: true,
         messages: [
             {

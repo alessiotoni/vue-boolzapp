@@ -27,6 +27,7 @@
         <div class="container">
             <div class="background-up"></div>
             <div class="box-app">
+                <!-- aside -->
                 <div class="aside">
                     <!-- item top -->
                     <div class="item">
@@ -50,19 +51,24 @@
                     </div>
                     <!-- cerca -->
                     <div class="item text-box">
-                        <input type="text" class="text" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" class="text" placeholder="Cerca o inizia una nuova chat" @keyup.enter="searchContact" v-model="contactToSearch">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
                     <!-- lista contatti -->
                     <div class="container-contacts">
                         <ul>
-                            <li v-for="(item, index) in usersList" @click="selectContact(index)" class="item">
+                            <li v-for="(item, index) in usersList" @click="selectContact(index)" class="item"
+                            :class="{selected: index == contactActive}">
                                 <div class="circle">
                                     <img :src="item.avatar" alt="">
                                 </div>
                                 <div>
                                     <p class="margin-b-5 color-black"><strong>{{item.name}}</strong></p>
-                                    <p>Non ci sono messaggi</p>
+                                    <p>{{getLastMessage(item).text}} <span v-if="getLastMessage(item).status == 'sent'"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                                        <span v-else>
+                                            <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+
+                                        </span>
                                 </div>
                             </li>
                         </ul>
@@ -71,13 +77,14 @@
 
                 <!-- contenitore chat -->
                 <div class="container-chat">
+                    <!-- top -->
                     <div class="item">
                         <div class="circle">
                             <img :src="usersList[contactActive].avatar" alt="">
                         </div>
                         <div>
                             <p class="margin-b-5 color-black"><strong>{{usersList[contactActive].name}}</strong></p>
-                            <p>Ultimo accesso oggi alle...</p>
+                            <p>Ultimo accesso oggi alle {{lastAccess}}</p>
                         </div>
                         <div class="white-space"></div>
                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -97,7 +104,7 @@
                     <!-- scive msg -->
                     <div class="item text-box">
                         <i class="fa fa-smile-o" aria-hidden="true"></i>
-                        <input type="text" class="text" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" class="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="addMessage()">
                         <i class="fa fa-microphone" aria-hidden="true"></i>
                     </div>
                 </div>

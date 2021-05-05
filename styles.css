@@ -35,6 +35,7 @@ html {
     display: flex;
     align-items: center;
     color: rgb(128, 128, 128);
+    flex-shrink: 0;
 }
 .item > * {
     margin: 0 10px;
@@ -74,6 +75,9 @@ html {
     height: 100%;
     flex-basis: 350px;
     border-right: 1px solid rgb(189, 173, 173);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 }
 /* aside notification */
 .aside .item.notification {
@@ -109,7 +113,7 @@ html {
 } 
 /* aside contatti */
 .aside .container-contacts {
-    height: calc(100% - 180px);
+    flex-grow: 1;
     background-color: rgb(237, 237, 237);
     overflow: auto;
 }
@@ -119,6 +123,9 @@ html {
     border-top: 1px solid rgb(189, 173, 173);
 }
 .aside .container-contacts .item:hover {
+    background-color: rgb(216, 212, 212);
+}
+.aside .container-contacts li.selected {
     background-color: rgb(216, 212, 212);
 }
 .aside .container-contacts .item p {
@@ -139,11 +146,12 @@ html {
     flex-grow: 1;
     background-image: url("imgs/mine.jpg");
     padding: 15px;
+    overflow: auto;
 }
 /* messaggio */
 .box-app .container-chat .chat .message {
     border-radius: 4px;
-    padding: 10px;
+    padding: 12px;
     max-width: 250px;
     margin-bottom: 10px;
     position: relative;
@@ -188,3 +196,4 @@ html {
     height: 40px;
     font-size: 15px;
 }
+
