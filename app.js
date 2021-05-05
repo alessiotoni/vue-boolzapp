@@ -2,64 +2,71 @@ const app = new Vue({
     el: "#app",
     data: {
         usersList: globalUsersList,
-        contactActive: 0,
+        contactActive: {},
         newMessage: "",
         contactToSearch: "",
-        lastAccess: "",
     },
     computed: {
-        // getLastMessageTime(){
-        //     const lastAccess = this.getLastMessageTime(this.userList[this.contactActive]).time
-            
-        //     this.lastAccess = lastAccess
-            
-        // },
+        
+        
     },
-
     methods: {
-        selectContact(index) {
-            this.contactActive = index;
+        searchContact() {
+            const usersListFiltered = this.usersList.filter((contact) => {
+                return contact.name.toLowerCase().includes(this.contactToSearch.toLowerCase())
+            })
+            return usersListFiltered
         },
-        getTimeFromString(dateString){
+        selectContact(item) {
+            this.contactActive = this.searchContact()[item];
+        },
+        getTimeFromString(dateString) {
             const dateFromString = moment(dateString, "DD/MM/YYYY HH/mm/ss");
             return dateFromString.format("HH:mm")
         },
-        getLastMessage(item){
+        getLastMessage(item) {
             const lastMessage = item.messages[item.messages.length - 1]
             return lastMessage
         },
-        
-        addMessage(){
+        addMessage() {   
             const messageSent = {
                 date: moment(),
                 text: this.newMessage,
                 status: 'sent'
             }
             if (this.newMessage) {
-                this.usersList[this.contactActive].messages.push(messageSent)
+                const contactActiveNow = this.contactActive
+                contactActiveNow.messages.push(messageSent)
                 this.newMessage = ""
-    
-                setTimeout(this.receivedMessage, 2000);
+
+                setTimeout(() => {
+                    const messageReceived = {
+                        date: moment(),
+                        text: "Va bene!",
+                        status: 'received',
+                    }
+                    contactActiveNow.messages.push(messageReceived)
+                    this.lastAccess()
+                }, 2000);
             }
-            
+        },
+        // receivedMessage() {
+        //     const messageReceived = {
+        //         date: moment(),
+        //         text: "Va bene!",
+        //         status: 'received',
+        //     }
+        //     this.contactActive.messages.push(messageReceived)
+        //     this.lastAccess()
+        // },
+        lastAccess() {
+            const receivedMessages = this.contactActive.messages.filter((msg) => msg.status == 'received')
+            const lastMessageDate = receivedMessages[receivedMessages.length - 1].date
+            this.contactActive.lastAccessContact = this.getTimeFromString(lastMessageDate)
         },
 
-        receivedMessage(){
-            const messageReceived = {
-                date: moment(),
-                text: "Va bene!",
-                status: 'received'
-            }
-            this.usersList[this.contactActive].messages.push(messageReceived)
-        },
-        searchContact(){
-            const usersListFiltered =  this.usersList.filter((element) => {
-                return element.name.toLowerCase().includes(this.contactToSearch.toLowerCase())
-                // console.log(element)
-            })
-            
-            console.log(usersListFiltered)
-        }
-        
     },
+    mounted() {
+        this.contactActive = this.usersList[0]
+    }
 })
