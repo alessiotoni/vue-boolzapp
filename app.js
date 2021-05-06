@@ -44,13 +44,24 @@ const app = new Vue({
                         date: moment(),
                         text: "Va bene!",
                         status: 'received',
+                        statusPopUp: false,
                         
                     }
                     contactActiveNow.messages.push(messageReceived);
                     contactActiveNow.lastAccessContact = this.getTimeFromString(messageReceived.date);
                 }, 2000);
-            }
+            };
         },
+        deleteText(){
+            this.contactToSearch = "";
+        },
+        showPopUp(item){
+            item.statusPopUp = !item.statusPopUp
+        },
+        deleteMessage(item){
+            console.log(item)
+            this.contactActive.messages.remove(item)
+        }
     },
     mounted() {
         this.contactActive = this.usersList[0];

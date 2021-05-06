@@ -53,6 +53,7 @@
                     <div class="item text-box">
                         <input type="text" class="text" placeholder="Cerca o inizia una nuova chat"  v-model="contactToSearch" @input="searchContact()">
                         <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="fa fa-times" aria-hidden="true" v-if="contactToSearch" @click="deleteText"></i>
                     </div>
                     <!-- lista contatti -->
                     <div class="container-contacts">
@@ -64,11 +65,14 @@
                                 </div>
                                 <div>
                                     <p class="margin-b-5 color-black"><strong>{{item.name}}</strong></p>
-                                    <p>{{getLastMessage(item).text}} <span v-if="getLastMessage(item).status == 'sent'"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
-                                        <span v-else>
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
-
+                                    <p>{{getLastMessage(item).text + getTimeFromString(getLastMessage(item).date)}}
+                                        <span v-if="getLastMessage(item).status == 'sent'">
+                                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                         </span>
+                                        <span v-else="">
+                                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                        </span>
+                                    </p>
                                 </div>
                             </li>
                         </ul>
@@ -92,12 +96,19 @@
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
                     <!-- msg -->
-                    <div class="chat">
-                        <div v-for="item in contactActive.messages" class="clearfix">
+                    <div class="chat" ref="containerChat">
+                        <div v-for="(item) in contactActive.messages" class="clearfix">
                             <div :class="(item.status == 'sent')? 'sent' : 'received'" class="message">
                                 <p>{{item.text}}</p>
                                 <div class="arrow-down"></div>
                                 <div class="time">{{getTimeFromString(item.date)}}</div>
+                                <i class="fa fa-chevron-down" aria-hidden="true" @click="showPopUp(item)"></i>
+                                <div class="popup" v-if="item.statusPopUp">
+                                    <ul>
+                                        <li>Message info</li>
+                                        <li @click="deleteMessage(item)">Delette message</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,7 +116,11 @@
                     <div class="item text-box">
                         <i class="fa fa-smile-o" aria-hidden="true"></i>
                         <input type="text" class="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="addMessage()">
-                        <i class="fa fa-microphone" aria-hidden="true"></i>
+                        <div class="message_icon">
+                            <i class="fa fa-paper-plane" aria-hidden="true" v-if="newMessage" @click="addMessage()"></i>
+                            <i class="fa fa-microphone" aria-hidden="true" v-else></i>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
