@@ -6,10 +6,6 @@ const app = new Vue({
         newMessage: "",
         contactToSearch: "",
     },
-    computed: {
-
-
-    },
     methods: {
         searchContact() {
             const usersListFiltered = this.usersList.filter((contact) => {
@@ -82,7 +78,5 @@ const app = new Vue({
     },
     mounted() {
         this.contactActive = this.usersList[0];
-
-        // document.querySelector('.chat .message').blur()
     }
 })
