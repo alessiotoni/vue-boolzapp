@@ -7,6 +7,13 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 /* utility */
+i:hover {
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+ul {
+    list-style: none;
+}
 .clearfix::after {
     display: table;
     content: '';
@@ -127,11 +134,12 @@ html {
 }
 .aside .container-contacts .item {
     background-color: white;
-    list-style: none;
+    
     border-top: 1px solid rgb(189, 173, 173);
 }
 .aside .container-contacts .item:hover,
-.chat .message .popup ul li:hover {
+.chat .message .popup ul li:hover,
+.chat .message .info_message ul li:hover {
     background-color: rgb(216, 212, 212);
 }
 .aside .container-contacts li.selected {
@@ -206,22 +214,32 @@ html {
 .chat .message:hover .fa-chevron-down{
     display: block;
 }
+.chat .message .popup,
+.chat .message .info_message {
+    background-color: rgb(252, 236, 236);
+    position: absolute;
+    border-radius: 4px;
+    padding: 5px;
+}
 .chat .message .popup{
     width: 160px;
-    background-color: white;
-    position: absolute;
     z-index: 1;
-    border-radius: 4px;
     bottom: -70px;
-    padding: 5px;
 }
-.chat .message .popup ul{
-    list-style: none;  
-}
-.chat .message .popup ul li {
+.chat .message ul li {
     padding: 5px;
     border-radius: 4px;
 }
+/* messaggio info */
+.chat .message .info_message {
+    z-index: 3;
+    bottom: -200px;
+    width: 310px;
+}
+.chat .message.sent .info_message {
+    right: 68px
+}
+
 /* messaggio time */
 .chat .message .time {
     position: absolute;

@@ -7,8 +7,8 @@ const app = new Vue({
         contactToSearch: "",
     },
     computed: {
-        
-        
+
+
     },
     methods: {
         searchContact() {
@@ -28,7 +28,7 @@ const app = new Vue({
             const lastMessage = item.messages[item.messages.length - 1]
             return lastMessage;
         },
-        addMessage() {   
+        addMessage() {
             const messageSent = {
                 date: moment(),
                 text: this.newMessage,
@@ -45,25 +45,44 @@ const app = new Vue({
                         text: "Va bene!",
                         status: 'received',
                         statusPopUp: false,
-                        
+                        infoMessage: false,
                     }
                     contactActiveNow.messages.push(messageReceived);
                     contactActiveNow.lastAccessContact = this.getTimeFromString(messageReceived.date);
+                    this.scrollToBottom()
                 }, 2000);
             };
+            this.scrollToBottom()
         },
-        deleteText(){
+        deleteText() {
             this.contactToSearch = "";
         },
-        showPopUp(item){
-            item.statusPopUp = !item.statusPopUp
+        showPopUp(item) {
+            item.statusPopUp = !item.statusPopUp;
+            item.infoMessage = false;
         },
-        deleteMessage(item){
-            console.log(item)
-            this.contactActive.messages.remove(item)
-        }
+        deleteMessage(item, index) {
+            this.contactActive.messages.splice(index, 1)
+        },
+        showInfoMessage(item) {
+            item.infoMessage = !item.infoMessage;
+
+        },
+        scrollToBottom() {
+            setTimeout(() => {
+                this.$refs.containerChat.scrollTop = this.$refs.containerChat.scrollHeight
+            }, 100);
+        },
+        blur() {
+            this.contactActive.messages.forEach((element) => {
+                element.statusPopUp = false;
+                element.infoMessage = false;
+            })
+        },
     },
     mounted() {
         this.contactActive = this.usersList[0];
+
+        // document.querySelector('.chat .message').blur()
     }
 })
