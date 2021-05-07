@@ -24,7 +24,7 @@
 
 <body>
     <div id="app">
-        <div class="container" @click="blur">
+        <div class="container" @click="closePopup">
             <div class="background-up"></div>
             <div class="box-app">
                 <!-- aside -->
@@ -64,16 +64,11 @@
                                     <img :src="item.avatar" alt="">
                                 </div>
                                 <div>
-                                    <p class="margin-b-5 color-black"><strong>{{item.name}}</strong></p>
+                                    <p class="margin-b-5 color-black">
+                                        <strong>{{item.name}}</strong>
+                                    </p>
                                     <p>
-                                        <span> {{getLastMessage(item).text}}</span>
-                                        <span> '{{getTimeFromString(getLastMessage(item).date)}}'</span>
-                                        <span v-if="getLastMessage(item).status == 'sent'">
-                                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                        </span>
-                                        <span v-else="">
-                                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                        </span>
+                                        {{getLastMessage(item)}}            
                                     </p>
                                 </div>
                             </li>
@@ -90,7 +85,7 @@
                         </div>
                         <div>
                             <p class="margin-b-5 color-black"><strong>{{contactActive.name}}</strong></p>
-                            <p>Ultimo accesso oggi alle {{contactActive.lastAccessContact}}</p>
+                            <p>Ultimo accesso oggi alle: {{contactActive.lastAccessContact}}</p>
                         </div>
                         <div class="white-space"></div>
                         <i class="fa fa-search" aria-hidden="true"></i>

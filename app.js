@@ -21,12 +21,23 @@ const app = new Vue({
             return dateFromString.format("HH:mm");
         },
         getLastMessage(item) {
-            const lastMessage = item.messages[item.messages.length - 1]
-            return lastMessage;
+
+            if(item.messages.length == 0) {
+                return "nessun messaggio"
+            }
+            const lastMessage = item.messages[item.messages.length - 1];
+            let lastMessageText = lastMessage.text;
+            const lastMessageDate = this.getTimeFromString(lastMessage.date);
+
+            if(lastMessageText.length > 20) {
+                lastMessageText = lastMessageText.slice(0, 20) + "..."
+            }
+
+            return lastMessageText + lastMessageDate;
         },
         addMessage() {
             const messageSent = {
-                date: moment(),
+                date: moment().format("DD/MM/YYYY HH:mm:ss"),
                 text: this.newMessage,
                 status: 'sent'
             }
@@ -37,7 +48,7 @@ const app = new Vue({
 
                 setTimeout(() => {
                     const messageReceived = {
-                        date: moment(),
+                        date: moment().format("DD/MM/YYY HH:mm:ss"),
                         text: "Va bene!",
                         status: 'received',
                         statusPopUp: false,
@@ -58,7 +69,19 @@ const app = new Vue({
             item.infoMessage = false;
         },
         deleteMessage(item, index) {
-            this.contactActive.messages.splice(index, 1)
+            const contactActiveNow = this.contactActive
+            contactActiveNow.messages.splice(index, 1)
+            
+            const messagesReceived = contactActiveNow.messages.filter((element) => {
+                return element.status == "received"
+            })
+            if (messagesReceived.length > 0) {
+                const newLastAccess = this.getTimeFromString(messagesReceived[messagesReceived.length - 1].date)
+                contactActiveNow.lastAccessContact = newLastAccess
+            } else {
+                contactActiveNow.lastAccessContact = "non disponibile"
+            }
+            
         },
         showInfoMessage(item) {
             item.infoMessage = !item.infoMessage;
@@ -69,7 +92,7 @@ const app = new Vue({
                 this.$refs.containerChat.scrollTop = this.$refs.containerChat.scrollHeight
             }, 100);
         },
-        blur() {
+        closePopup() {
             this.contactActive.messages.forEach((element) => {
                 element.statusPopUp = false;
                 element.infoMessage = false;
